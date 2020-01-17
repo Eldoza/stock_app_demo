@@ -70,9 +70,9 @@ const Home = () => {
                   <TableCell align="right">{stock.symbol}</TableCell>
                   <TableCell align="right">{`$${stock.lastPrice}`}</TableCell>
                   <TableCell align="right">{stock.change}</TableCell>
-                  <TableCell align="right">{stock.high}</TableCell>
-                  <TableCell align="right">{stock.low}</TableCell>
-                  <TableCell align="right">{stock.open}</TableCell>
+                  <TableCell align="right">{`$${stock.high}`}</TableCell>
+                  <TableCell align="right">{`$${stock.low}`}</TableCell>
+                  <TableCell align="right">{`$${stock.open}`}</TableCell>
                 </TableRow>
               ))}
           </TableBody>

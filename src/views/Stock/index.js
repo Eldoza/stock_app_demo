@@ -25,15 +25,24 @@ const Stock = () => {
 
   let { stockSymbol } = useParams();
   const [currentStock, setCurrentStock] = useState();
+  const [starWarsChar, setStarWarsChar] = useState();
 
   useEffect(() => {
     axios.get("../data/stock-data.json").then(res => {
-      console.log("res --->", res.data);
       let stock = res.data.find(d => d.symbol === stockSymbol);
       setCurrentStock(stock);
     });
   }, []);
-  console.log("current stock ===>", currentStock);
+
+  useEffect(() => {
+    axios.get("https://swapi.co/api/people").then(res => {
+      setStarWarsChar(
+        res.data.results[Math.floor(Math.random() * res.data.results.length)]
+      );
+    });
+  }, []);
+
+  console.log("rando character----", starWarsChar);
   return (
     <Paper className={classes.root}>
       <Card raised>
@@ -43,7 +52,7 @@ const Stock = () => {
               <Typography variant="h3" gutterBottom>
                 {currentStock.name}
               </Typography>
-              <Divider variant="middle" style={{marginBottom: '15px'}} />
+              <Divider variant="middle" style={{ marginBottom: "15px" }} />
               <Typography variant="h6" gutterBottom>
                 Symbol: {currentStock.symbol}
               </Typography>
